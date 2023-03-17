@@ -1,25 +1,25 @@
 package model;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 public class Post {
     private String msg;
-    private Date date;
+    private LocalDateTime date;
     private int countOfLikes;
 
     //GETTERS
     public String getMsg() {
         return msg;
     }
-    public Date getDate() {
+    public LocalDateTime getDate() {
         return date;
     }
     public int getCountOfLikes() {
         return countOfLikes;
     }
     //SETTERS
-    public void setDate(Date date) {
-        this.date = date;
+    public void setDate() {
+        this.date = LocalDateTime.now();
     }
     public void setMsg(String msg) {
         this.msg = msg;
@@ -29,12 +29,12 @@ public class Post {
     }
     //CONSTRUCTORS
     Post(){
-//        setDate();
+        setDate();
         setMsg("Unknown");
         setCountOfLikes(0);
     }
-    Post(String msg, Date date, int countOfLikes){
-        setDate(date);
+    Post(String msg, LocalDateTime date, int countOfLikes){
+        setDate();
         setMsg(msg);
         setCountOfLikes(countOfLikes);
     }
