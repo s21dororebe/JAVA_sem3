@@ -1,5 +1,10 @@
 package model.users;
 
+import model.Page;
+import model.Post;
+import model.PostType;
+import service.MainService;
+
 public abstract class User extends GuestUser {
     private String name; //for business User it will be name of owner
     private String surname;
@@ -69,11 +74,34 @@ public abstract class User extends GuestUser {
     }
 
     //OTHER FUNCTIONS
-    //TODO login() followPage()
-    public void login(){}
-    public void followPage(){}
-    public interface IPostCreation{
-        void createPost();
+    //TODO followPage()
+    public boolean login(){
+        for(User temp : MainService.allRegisteredUsers) {
+            if(temp.getUsername().equals(username) && temp.getPassword().equals(encodedPassword)){
+                return true;
+            }
+        }
+        return false;
     }
+    public void followPage(Page page) throws Exception {
+        if(page == null){
+            throw (new Exception("ERROR 404: Page not found"));
+        }
+        page.addFollower(this);
+    }
+    public void unFollowPage(Page page) throws Exception {
+        if(page == null){
+            throw (new Exception("ERROR 404: Page not found"));
+        }
+        page.removeFollower(this);
+    }
+
+    //TWO WAYS TO DEFINE ABSTRACT FUNCTIONS
+    //1.
+    abstract Post createPost(Post post, PostType type);
+    //2.
+//    public interface IPostCreation{
+//        Post createPost(Post post, PostType type);
+//    }
 
 }

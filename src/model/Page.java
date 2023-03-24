@@ -44,7 +44,7 @@ public class Page {
             followers.add(follower);
         }
     }
-    public void removeFollowers(User follower) {
+    public void removeFollower(User follower) {
         if(follower!= null && followers.contains(follower)){
             followers.remove(follower);
         }
