@@ -11,17 +11,16 @@ public class PrivateUser extends User {
     private final ArrayList<PrivateUser> followers = new ArrayList<>();
 
     //GETTERS
-    public ArrayList<Post> getPrivatePosts() {
+    public ArrayList<Post> getAllPrivatePosts() {
         return allPrivatePosts;
     }
-    public ArrayList<Post> getPublicPosts() {
+    public ArrayList<Post> getAllPublicPosts() {
         return allPublicPosts;
     }
     public ArrayList<PrivateUser> getFollowers() {
         return followers;
     }
 
-    //CONSTRUCTORS
     public void addFollower(PrivateUser follower) {
         if(follower!= null && !followers.contains(follower)){
             followers.add(follower);

@@ -1,11 +1,36 @@
 package model.users;
 
-public class BusinessUser {
-    //GETTERS
+import model.Page;
+import model.Post;
+import model.PostType;
 
-    //SETTERS
+import java.util.ArrayList;
+import java.util.Objects;
 
-    //CONSTRUCTORS
+public class BusinessUser extends User {
+    private final ArrayList<Page> allPages = new ArrayList<>();
 
-    //TO_STRING
+    public ArrayList<Page> getAllPages() {
+        return allPages;
+    }
+
+    public void addPage(Page page){
+        if(page != null && !allPages.contains(page)) {
+            allPages.add(page);
+        }
+    }
+    public void removePage(Page page){
+        if(page != null && allPages.contains(page)) {
+            allPages.remove(page);
+        }
+    }
+    @Override
+    public Post createPost(Post post, PostType type) {
+        return Objects.requireNonNullElseGet(post, Post::new);
+    }
+    public void createPostInPage(Page page, Post post){
+        if(page != null && post != null && !page.getPostInPage().contains(post)){
+            page.getPostInPage().add(post);
+        }
+    }
 }

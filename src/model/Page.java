@@ -20,7 +20,7 @@ public class Page {
     public ArrayList<User> getFollowers() {
         return followers;
     }
-    public ArrayList<Post> getPostsInPage() {
+    public ArrayList<Post> getPostInPage() {
         return postsInPage;
     }
     //SETTERS
