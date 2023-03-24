@@ -7,8 +7,8 @@ import java.util.ArrayList;
 public class Page {
     private String title;
     private String description;
-    private ArrayList<User> followers = new ArrayList<>();
-    private ArrayList<Post> postsInPage = new ArrayList<>();
+    private final ArrayList<User> followers = new ArrayList<>();
+    private final ArrayList<Post> postsInPage = new ArrayList<>();
 
     //GETTERS
     public String getTitle() {
@@ -60,21 +60,17 @@ public class Page {
         }
     }
     //CONSTRUCTORS
-    Page(){
-        setTitle("Unknown");
-        setDescription("Unknown");
+    public Page(){
+        setTitle("---TITLE---");
+        setDescription("---DESCRIPTION---");
     }
-    Page(String title, String description){
+    public Page(String title, String description){
         setTitle(title);
         setDescription(description);
     }
     //TO_STRING
     @Override
     public String toString() {
-        return "Page{" +
-                "title='" + title + '\'' +
-                ", description='" + description + '\'' +
-                ", postsInPage=" + postsInPage +
-                '}';
+        return title + " (" + description + ") ==>" + postsInPage + "==>" + followers.size();
     }
 }

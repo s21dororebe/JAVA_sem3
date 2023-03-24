@@ -34,11 +34,11 @@ public class Post {
         countOfLikes++;
     }
     //CONSTRUCTORS
-    Post(){
+    public Post(){
         setDate();
         setMsg("Test message");
     }
-    Post(String msg){
+    public Post(String msg){
         setDate();
         setMsg(msg);
     }

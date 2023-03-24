@@ -4,10 +4,10 @@ import model.Post;
 
 import java.util.ArrayList;
 
-public class PrivateUser extends AbstractUser {
+public class PrivateUser extends User {
     private ArrayList<Post> privatePosts;
     private ArrayList<Post> publicPosts;
-    private ArrayList<AbstractUser> followers;
+    private ArrayList<User> followers;
 
     //GETTERS
     public ArrayList<Post> getPrivatePosts() {
@@ -16,7 +16,7 @@ public class PrivateUser extends AbstractUser {
     public ArrayList<Post> getPublicPosts() {
         return publicPosts;
     }
-    public ArrayList<AbstractUser> getFollowers() {
+    public ArrayList<User> getFollowers() {
         return followers;
     }
 
@@ -27,7 +27,7 @@ public class PrivateUser extends AbstractUser {
     public void setPublicPosts(ArrayList<Post> inputPublicPosts) {
         publicPosts = inputPublicPosts;
     }
-    public void setFollowers(ArrayList<AbstractUser> inputFollowers) {
+    public void setFollowers(ArrayList<User> inputFollowers) {
         followers = inputFollowers;
     }
 
@@ -38,7 +38,7 @@ public class PrivateUser extends AbstractUser {
 //        setPublicPosts();
 //        setFollowers();
     }
-    PrivateUser(ArrayList<Post> inputPrivatePosts, ArrayList<Post> inputPublicPosts, ArrayList<AbstractUser> inputFollowers){
+    PrivateUser(ArrayList<Post> inputPrivatePosts, ArrayList<Post> inputPublicPosts, ArrayList<User> inputFollowers){
         setPrivatePosts(inputPrivatePosts);
         setPublicPosts(inputPublicPosts);
         setFollowers(inputFollowers);
