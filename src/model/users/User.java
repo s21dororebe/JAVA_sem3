@@ -1,6 +1,6 @@
 package model.users;
 
-class AbstractUser extends GuestUser {
+public class User extends GuestUser {
     private String nameAndSurname;
     private String username;
     private String password;
@@ -35,13 +35,13 @@ class AbstractUser extends GuestUser {
             password = "Unknown";
     }
     //CONSTRUCTORS
-    AbstractUser(){
+    User(){
         super();
         setNameAndSurname("Unknown");
         setUsername("Unknown");
         setPassword("Unknown");
     }
-    AbstractUser(String nameAndSurname, String username, String password){
+    User(String nameAndSurname, String username, String password){
         super();
         setNameAndSurname(nameAndSurname);
         setUsername(username);
