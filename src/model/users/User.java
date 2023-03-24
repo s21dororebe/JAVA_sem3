@@ -1,69 +1,79 @@
 package model.users;
 
-public class User extends GuestUser {
-    private String nameAndSurname;
+public abstract class User extends GuestUser {
+    private String name; //for business User it will be name of owner
+    private String surname;
     private String username;
-    private String password;
+    private String encodedPassword;
 
     //GETTERS
-    public String getNameAndSurname() {
-        return nameAndSurname;
+    public String getName() {
+        return name;
+    }
+    public String getSurname() {
+        return surname;
     }
     public String getUsername() {
         return username;
     }
     public String getPassword() {
-        return password;
+        return encodedPassword;
     }
     //SETTERS
-    public void setNameAndSurname(String nameAndSurname) {
-        if (nameAndSurname != null && nameAndSurname.matches("[A-ZĀĒŖŪĪĻĶĢŠŽČŅ]{1}[a-zēŗūīļķģšāžčņ]+[ ]?([A-ZĀĒŖŪĪĻĶĢŠŽČŅ]{1}[a-zēŗūīļķģšāžčņ]+)?") )
-            nameAndSurname = nameAndSurname;
+    public void setName(String inputName) {
+        if (inputName != null && inputName.matches("[A-ZĀĒŖŪĪĻĶĢŠŽČŅ][a-zēŗūīļķģšāžčņ]+[ ]?([A-ZĀĒŖŪĪĻĶĢŠŽČŅ][a-zēŗūīļķģšāžčņ]+)?") )
+            name = inputName;
         else
-            nameAndSurname = "Unknown";
+            name = "name";
     }
-    public void setUsername(String username) {
-        if (username != null && username.matches("^(?=[a-zA-Z0-9._]{8,20}$)(?!.*[_.]{2})[^_.].*[^_.]$") )
-            username = username;
+    public void setSurname(String inputSurname) {
+        if (inputSurname != null && inputSurname.matches("[A-ZĀĒŖŪĪĻĶĢŠŽČŅ][a-zēŗūīļķģšāžčņ]+[ ]?([A-ZĀĒŖŪĪĻĶĢŠŽČŅ][a-zēŗūīļķģšāžčņ]+)?") )
+            surname = inputSurname;
         else
-            username = "Unknown";
+            surname = "surname";
     }
-    public void setPassword(String inputPassword) {
-        if (inputPassword != null && inputPassword.matches("^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$" ))
-            password = inputPassword;
+    public void setUsername(String inputUsername) {
+        //no a lidz z burtiem, no 0 lidz 9 cipari un vel punktins [] iekavaas
+        //no 8 lidz 20 simboliem username
+        if (inputUsername != null && inputUsername.matches("[a-z0-9.]{8,20}") )
+            username = inputUsername;
         else
-            password = "Unknown";
+            username = "default.user";
+    }
+    public void setEncodedPassword(String inputEncodedPassword) {
+        if (inputEncodedPassword != null && inputEncodedPassword.matches("^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$" ))
+            //TODO find out simple password encoder
+            encodedPassword = inputEncodedPassword;
+        else
+            encodedPassword = "P@ssw0rd";
     }
     //CONSTRUCTORS
-    User(){
+    public User(){
         super();
-        setNameAndSurname("Unknown");
-        setUsername("Unknown");
-        setPassword("Unknown");
+        setName("name");
+        setSurname("surname");
+        setUsername("default.user");
+        setEncodedPassword("P@ssw0rd");
     }
-    User(String nameAndSurname, String username, String password){
+    public User(String name, String surname, String username, String inputEncodedPassword){
         super();
-        setNameAndSurname(nameAndSurname);
+        setName(name);
+        setSurname(surname);
         setUsername(username);
-        setPassword(password);
+        setEncodedPassword(inputEncodedPassword);
     }
     //TO_STRING
-
     @Override
     public String toString() {
-        return "User{" +
-                "nameAndSurname='" + nameAndSurname + '\'' +
-                ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                '}';
+        return "RU No. " + getGeneratedId() + ": " + name + " " + surname + ", " + username;
     }
 
     //OTHER FUNCTIONS
     //TODO login() followPage()
     public void login(){}
     public void followPage(){}
-//    public interface IPostCreation{
-//        void createPost();
-//    }
+    public interface IPostCreation{
+        void createPost();
+    }
 
 }

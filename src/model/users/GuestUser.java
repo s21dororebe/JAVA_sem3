@@ -16,7 +16,7 @@ public class GuestUser {
     //TO_STRING
     @Override
     public String toString() {
-        return "GuestUser Nr. " + generatedId;
+        return "GU No. " + generatedId;
     }
 
     //TODO add find functions
