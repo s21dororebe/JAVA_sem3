@@ -1,56 +1,47 @@
 package model.users;
 
 import model.Post;
+import model.PostType;
 
 import java.util.ArrayList;
 
 public class PrivateUser extends User {
-    private ArrayList<Post> privatePosts;
-    private ArrayList<Post> publicPosts;
-    private ArrayList<User> followers;
+    private final ArrayList<Post> allPrivatePosts = new ArrayList<>();
+    private final ArrayList<Post> allPublicPosts = new ArrayList<>();
+    private final ArrayList<PrivateUser> followers = new ArrayList<>();
 
     //GETTERS
     public ArrayList<Post> getPrivatePosts() {
-        return privatePosts;
+        return allPrivatePosts;
     }
     public ArrayList<Post> getPublicPosts() {
-        return publicPosts;
+        return allPublicPosts;
     }
-    public ArrayList<User> getFollowers() {
+    public ArrayList<PrivateUser> getFollowers() {
         return followers;
     }
 
-    //SETTERS
-    public void setPrivatePosts(ArrayList<Post> inputPrivatePosts) {
-        privatePosts = inputPrivatePosts;
-    }
-    public void setPublicPosts(ArrayList<Post> inputPublicPosts) {
-        publicPosts = inputPublicPosts;
-    }
-    public void setFollowers(ArrayList<User> inputFollowers) {
-        followers = inputFollowers;
-    }
-
     //CONSTRUCTORS
-    //TODO non argument constructor
-    PrivateUser(){
-//        setPrivatePosts();
-//        setPublicPosts();
-//        setFollowers();
+    public void addFollower(PrivateUser follower) {
+        if(follower!= null && !followers.contains(follower)){
+            followers.add(follower);
+        }
     }
-    PrivateUser(ArrayList<Post> inputPrivatePosts, ArrayList<Post> inputPublicPosts, ArrayList<User> inputFollowers){
-        setPrivatePosts(inputPrivatePosts);
-        setPublicPosts(inputPublicPosts);
-        setFollowers(inputFollowers);
+    public void removeFollower(PrivateUser follower) {
+        if(follower!= null && followers.contains(follower)){
+            followers.remove(follower);
+        }
     }
 
-    //TO_STRING
     @Override
-    public String toString() {
-        return "PrivateUser{" +
-                "privatePosts=" + privatePosts +
-                ", publicPosts=" + publicPosts +
-                ", followers=" + followers +
-                '}';
+    public Post createPost(Post post, PostType type) {
+        if(type.equals(PostType.privatePost) && !allPrivatePosts.contains(post)){
+            allPrivatePosts.add(post);
+        } else if(type.equals(PostType.publicPost) && !allPublicPosts.contains(post)){
+            allPublicPosts.add(post);
+        } else {
+            return null;
+        }
+        return post;
     }
 }

@@ -98,7 +98,7 @@ public abstract class User extends GuestUser {
 
     //TWO WAYS TO DEFINE ABSTRACT FUNCTIONS
     //1.
-    abstract Post createPost(Post post, PostType type);
+    public abstract Post createPost(Post post, PostType type);
     //2.
 //    public interface IPostCreation{
 //        Post createPost(Post post, PostType type);
