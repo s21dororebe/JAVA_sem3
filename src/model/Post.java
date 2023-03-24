@@ -4,7 +4,8 @@ import java.time.LocalDateTime;
 
 public class Post {
     private String msg;
-    private LocalDateTime date;
+    private LocalDateTime dateTime;
+    //TODO need to change to ArrayList of user, which set the like to this post
     private int countOfLikes;
 
     //GETTERS
@@ -12,38 +13,40 @@ public class Post {
         return msg;
     }
     public LocalDateTime getDate() {
-        return date;
+        return dateTime;
     }
     public int getCountOfLikes() {
         return countOfLikes;
     }
     //SETTERS
     public void setDate() {
-        this.date = LocalDateTime.now();
+        this.dateTime = LocalDateTime.now();
     }
-    public void setMsg(String msg) {
-        this.msg = msg;
+    public void setMsg(String inputMsg) {
+        if(inputMsg != null && inputMsg.length() > 3){
+            msg = inputMsg;
+        } else {
+            msg = "----";
+        }
     }
-    public void setCountOfLikes(int countOfLikes) {
-        this.countOfLikes = countOfLikes;
+    public void increaseLikes() {
+        countOfLikes++;
     }
     //CONSTRUCTORS
     Post(){
         setDate();
         setMsg("Unknown");
-        setCountOfLikes(0);
     }
-    Post(String msg, LocalDateTime date, int countOfLikes){
+    Post(String msg){
         setDate();
         setMsg(msg);
-        setCountOfLikes(countOfLikes);
     }
     //TO_STRING
     @Override
     public String toString() {
         return "Post{" +
                 "msg='" + msg + '\'' +
-                ", date=" + date +
+                ", dateTime=" + dateTime +
                 ", countOfLikes=" + countOfLikes +
                 '}';
     }

@@ -1,9 +1,9 @@
 package model.users;
 
-public class User extends GuestUser {
+class AbstractUser extends GuestUser {
     private String nameAndSurname;
     private String username;
-    private String password; //(can be created using MD5 Hashing cryptographic method)
+    private String password;
 
     //GETTERS
     public String getNameAndSurname() {
@@ -28,22 +28,20 @@ public class User extends GuestUser {
         else
             username = "Unknown";
     }
-    //TODO
-    /*
-    public void setPassword(String password) {
-        if (password != null && password.matches("^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$") )
-            password = password;
+    public void setPassword(String inputPassword) {
+        if (inputPassword != null && inputPassword.matches("^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$" ))
+            password = inputPassword;
         else
             password = "Unknown";
-    }*/
+    }
     //CONSTRUCTORS
-    User(){
+    AbstractUser(){
         super();
         setNameAndSurname("Unknown");
         setUsername("Unknown");
         setPassword("Unknown");
     }
-    User(String nameAndSurname, String username, String password){
+    AbstractUser(String nameAndSurname, String username, String password){
         super();
         setNameAndSurname(nameAndSurname);
         setUsername(username);
@@ -59,4 +57,13 @@ public class User extends GuestUser {
                 ", password='" + password + '\'' +
                 '}';
     }
+
+    //OTHER FUNCTIONS
+    //TODO login() followPage()
+    public void login(){}
+    public void followPage(){}
+//    public interface IPostCreation{
+//        void createPost();
+//    }
+
 }
