@@ -5,6 +5,9 @@ import model.Post;
 import model.PostType;
 import service.MainService;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
 public abstract class User extends GuestUser {
     private String name; //for business User it will be name of owner
     private String surname;
@@ -46,21 +49,28 @@ public abstract class User extends GuestUser {
             username = "default.user";
     }
     public void setEncodedPassword(String inputEncodedPassword) {
-        if (inputEncodedPassword != null && inputEncodedPassword.matches("^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$" ))
-            //TODO find out simple password encoder
-            encodedPassword = inputEncodedPassword;
-        else
+        if (inputEncodedPassword != null && inputEncodedPassword.matches("^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$" )){
+            try {
+                MessageDigest md = MessageDigest.getInstance("MD5");
+                md.update(inputEncodedPassword.getBytes());
+                encodedPassword = new String(md.digest());
+            } catch (Exception e){
+                encodedPassword = "P@ssw0rd";
+            }
+        }
+        else {
             encodedPassword = "P@ssw0rd";
+        }
     }
     //CONSTRUCTORS
-    public User(){
+    public User() throws NoSuchAlgorithmException {
         super();
         setName("name");
         setSurname("surname");
         setUsername("default.user");
         setEncodedPassword("P@ssw0rd");
     }
-    public User(String name, String surname, String username, String inputEncodedPassword){
+    public User(String name, String surname, String username, String inputEncodedPassword) throws NoSuchAlgorithmException {
         super();
         setName(name);
         setSurname(surname);

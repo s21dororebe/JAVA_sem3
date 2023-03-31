@@ -3,12 +3,20 @@ package model.users;
 import model.Post;
 import model.PostType;
 
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 
 public class PrivateUser extends User {
     private final ArrayList<Post> allPrivatePosts = new ArrayList<>();
     private final ArrayList<Post> allPublicPosts = new ArrayList<>();
     private final ArrayList<PrivateUser> followers = new ArrayList<>();
+
+    public PrivateUser() throws NoSuchAlgorithmException {
+    }
+
+    public PrivateUser(String name, String surname, String username, String inputEncodedPassword) throws NoSuchAlgorithmException {
+        super(name, surname, username, inputEncodedPassword);
+    }
 
     //GETTERS
     public ArrayList<Post> getAllPrivatePosts() {
