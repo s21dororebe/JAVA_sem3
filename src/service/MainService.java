@@ -34,8 +34,6 @@ public class MainService {
         private2.createPost(new Post("I am glad to see myself here"), PostType.privatePost);
         private2.createPost(new Post("I am glad to see you today"), PostType.publicPost);
 
-
-
         Page page1 = new Page("Ziedi Venstpils", "Flowers for all of your girls in Ventpils");
         Page page2 = new Page("Ziedi Liepaja", "Flowers for all of your girls in Liepaja");
         business1.addPage(page1);
@@ -65,6 +63,42 @@ public class MainService {
         System.out.println("Ziedi posts:");
         for (Post temp: business1.getAllPages().get(0).getPostInPage()){
             System.out.println(temp);
+        }
+        System.out.println();
+
+        //8. verify login func.
+        System.out.println("Login function:");
+//        guest1.login(); //nestrada => good
+        System.out.println(private1.login());
+        System.out.println(business1.login());
+        System.out.println();
+        //9. verify followPage func.
+        System.out.println("followPage function:");
+        try {
+            page1.addFollower(private1);
+            page1.addFollower(business1);
+            page1.addFollower(business2);
+        } catch (Exception e){
+            System.out.println(e);
+        }
+        System.out.println(page1.getFollowers());
+        System.out.println();
+        //10. verify addFollower func.
+        System.out.println("addFollower function:");
+        private1.addFollower(private2);
+        System.out.println(private1.getFollowers());
+        System.out.println();
+        //11. verify removeFollower func.
+        System.out.println("removeFollower function:");
+        private1.removeFollower(private2);
+        System.out.println(private1.getFollowers());
+        System.out.println();
+        //12. verify increaseLikes func.
+        System.out.println("increaseLikes function:");
+        for(int i = 0; i < 10; i++){
+            private1.getAllPrivatePosts().get(0).increaseLikes();
+            if(i % 2 == 0)
+                System.out.println(private1.getAllPrivatePosts().get(0));
         }
         System.out.println();
 
