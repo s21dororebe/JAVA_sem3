@@ -11,9 +11,6 @@ public class PrivateUser extends User {
     private final ArrayList<Post> allPublicPosts = new ArrayList<>();
     private final ArrayList<PrivateUser> followers = new ArrayList<>();
 
-    public PrivateUser() throws NoSuchAlgorithmException {
-    }
-
     public PrivateUser(String name, String surname, String username, String inputEncodedPassword) throws NoSuchAlgorithmException {
         super(name, surname, username, inputEncodedPassword);
     }
