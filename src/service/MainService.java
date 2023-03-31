@@ -1,10 +1,7 @@
 package service;
 
 import model.PostType;
-import model.users.User;
-import model.users.BusinessUser;
-import model.users.PrivateUser;
-import model.users.GuestUser;
+import model.users.*;
 import model.Post;
 import model.Page;
 
@@ -102,13 +99,45 @@ public class MainService {
         }
         System.out.println();
 
+        System.out.println("FIND FUNCTIONS");
+        System.out.println("findUsersByNameOrSurnameOrUsername");
+        try {
+            System.out.println("Search for 'Peter': " + private1.findUsersByNameOrSurnameOrUsername("Peter"));
+            System.out.println("Search for 'Zakis': " + private1.findUsersByNameOrSurnameOrUsername("Zakis"));
+        } catch (Exception e){
+            System.out.println(e);
+        }
+        System.out.println();
+        System.out.println("findPagesByTitleOrDescription");
+        try {
+            System.out.println("Search for 'ziedi': " + business1.findPagesByTitleOrDescription("ziedi"));
+            System.out.println("Search for 'priede': " + business1.findPagesByTitleOrDescription("priede"));
+        } catch (Exception e){
+            System.out.println(e);
+        }
+        System.out.println();
+        System.out.println("findPublicPostsInPrivateUserOrInPage");
+        try {
+            System.out.println("Search for 'Discount': " + business1.findPublicPostsInPrivateUserOrInPage("Discount"));
+            System.out.println("Search for 'video': " + private1.findPublicPostsInPrivateUserOrInPage("video"));
+        } catch (Exception e){
+            System.out.println(e);
+        }
+        System.out.println();
 
-        //TODO create register function for users
-        //TODO create UserType enum privateUser, businessUser
-        //public boolean register(String name, String surname, String username, String password, UserType type){
-        // find in allRegisteredUsers - vai jau eksiste tads users
-        // izvele, kads users tu busi (private / business)
-        // }
+
 
     }
+
+    //TODO create register function for users
+    /*public boolean register(String name, String surname, String username, String password, UserType type){
+     *//*find in allRegisteredUsers - vai jau eksiste tads users
+     izvele, kads users tu busi (private / business)*//*
+        for(User temp : allRegisteredUsers){
+            if(username.equals(temp.getUsername())){
+                return false;
+            }
+        }
+        return true;
+     }*/
 }
